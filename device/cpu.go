@@ -23,8 +23,8 @@ func CpuInfo(user, password, ip string) map[string]string {
 	defer session.Close()
 	defer func() {
 		if err := recover(); err != nil {
-			log.Println("连接超时，意外中断")
-			CpuInfo(user, password, ip)
+			log.Println("连接超时，意外中断,重新连接中!!!")
+			CpuInfo(user, password, ip) //这里需要优化
 		}
 	}()
 	if err != nil {

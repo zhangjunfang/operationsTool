@@ -1,0 +1,36 @@
+<html>
+<head>
+{{template "/public/head.html"}}
+</head>
+<body>
+{{template "/public/nav-slide.html"}}
+
+<div class="modal-page pushable dimmable scrolling">
+    <div class="ui container" style="margin: 80px 0;">
+        <div class="ui breadcrumb">
+            <a class="section" href="/">首页</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section">脚本仓库</div>
+            <i class="right arrow icon divider"></i>
+            <div class="active section">ShellBox</div>
+        </div>
+
+        <h3 class="ui block header">ShellBox</h3>
+
+        <div class="ui info message">
+            <div class="header">ShellBox(脚本仓库)</div>
+            <ul class="list">
+                <li>授权协议:MIT(当前版本:v0.0.1 Beta 未公开)</li>
+                <li>ShellBox是一个shell脚本仓库，基于PHP+Mysql+Yii2搭建的嵌入型网页</li>
+                <li>代码仓库:http://git.oschina.net/lione</li>
+            </ul>
+        </div>
+
+        <div><iframe width="100%" height="60%" src="http://60.205.191.163/shellbox/web?r=shellbox-public" frameborder="0"></iframe></div>
+    </div>
+    
+</div>
+</body>
+{{template "/public/nav-slide-js.html"}}
+<script src="/static/Semantic-UI/semantic.min.js"></script>
+</html>

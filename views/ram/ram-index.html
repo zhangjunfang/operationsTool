@@ -1,0 +1,76 @@
+<html>
+<head>
+{{template "/public/head.html"}}
+</head>
+<body>
+{{template "/public/nav-slide.html"}}
+
+<div class="modal-page pushable dimmable scrolling">
+    <div class="ui container" style="margin-top: 80px;">
+
+        <div class="ui breadcrumb">
+            <a class="section" href="/">首页</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section">硬件设备</div>
+            <i class="right arrow icon divider"></i>
+            <div class="active section">内存</div>
+        </div>
+
+        <h3 class="ui block header">用户进程管理</h3>
+
+        <div class="ui error message">
+            <div class="header">用户进程管理是一项危险操作</div>
+            <ul class="list">
+                <li>通过对进程的有效管理可以为系统腾出更多的可用内存。</li>
+                <li>在对进程管理的同时，可能会影响其他进程的正常工作。</li>
+            </ul>
+        </div>
+
+        <table class="ui unstackable table selectable">
+        <thead>
+            <tr>
+            <th>UID</th>        
+            <th>PID</th>  
+            <th>PPID</th>  
+            <th>C</th>
+            <th>STIME</th> 
+            <th>TTY</th>          
+            <th>TIME</th> 
+            <th>CMD</th>
+            </tr>
+        </thead>
+        <tbody id="process">
+
+        </tbody>
+        </table>
+    </div>
+    
+    <div class="ui small modal" id="tips">
+        <div class="header">确定关闭进程?</div>
+        <div class="content">
+        <p id="tipsinfo"></p>
+        </div>
+        <div class="actions">
+        <div class="ui negative button">No </div>
+        <div class="ui positive right labeled icon button" onclick="killprocess()">Yes <i class="checkmark icon"></i> </div>
+        </div>
+    </div>
+
+    <div class="ui modal small" id="info">
+        <i class="close icon"></i>
+        <div class="header">系统消息</div>
+        <div class="content" id="infotext"></div>
+        <div class="actions">
+            <div class="ui green button" onclick="getinfo()">收到</div>
+        </div>
+    </div>
+
+</div>
+</body>
+{{template "/public/nav-slide-js.html"}}
+<script>
+    var text = "{{.process}}";
+</script>
+<script src="/static/Semantic-UI/semantic.min.js"></script>
+<script src="/static/js/ram.js"></script>
+</html>

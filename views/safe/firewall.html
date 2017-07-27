@@ -1,0 +1,247 @@
+<html>
+<head>
+{{template "/public/head.html"}}
+</head>
+<body>
+{{template "/public/nav-slide.html"}}
+
+<div class="modal-page pushable dimmable scrolling">
+    <div class="ui container" style="margin-top: 80px;">
+
+        <div class="ui breadcrumb">
+            <a class="section" href="/">首页</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section">安全中心</div>
+            <i class="right arrow icon divider"></i>
+            <div class="active section">防火墙</div>
+        </div>
+
+        <h3 class="ui block header">防火墙设置</h3>
+
+        <div class="ui info message">
+            <div class="header">防火墙端口/IP操作</div>
+            <ul class="list">
+                <li>通过对防火墙的端口控制能够有效地防止端口被恶意占用</li>
+                <li>对ip地址的选择性限制能够降低服务器被恶意访问</li>
+            </ul>
+        </div>
+
+    <div class="ui cards">
+        <div class="card">
+            <div class="content">
+                <!--<img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg">-->
+            <div class="header">iptables规则</div>
+            <!--<div class="meta">添加规则</div>-->
+            <!--<div class="description">删除规则</div>-->
+            </div>
+            <div class="extra content">
+            <div class="ui two buttons">
+                <div class="ui basic green button" onclick="addrules()">添加规则</div>
+                <div class="ui basic purple button" onclick="list()">规则列表</div>
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <!--<img class="right floated mini ui image" src="/images/avatar/large/jenny.jpg">-->
+            <div class="header">iptables保存并生效</div>
+            <!--<div class="meta">New Member </div>-->
+            <!--<div class="description">Jenny wants to add you to the group <b>best friends</b> </div>-->
+            </div>
+            <div class="extra content">
+            <div class="ui two buttons">
+                <div class="ui basic green button" onclick="rulesave()">保存并生效</div>
+                <!--<div class="ui basic red button">Decline</div>-->
+            </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    
+    <div class="ui modal small" id="info">
+        <i class="close icon"></i>
+        <div class="header">系统消息</div>
+        <div class="content" id="infotext"></div>
+        <div class="actions">
+            <div class="ui green button" onclick="getinfo()">收到</div>
+        </div>
+    </div>
+
+    <div class="ui modal small" id="confirm">
+        <i class="close icon"></i>
+        <div class="header">确定删除规则？</div>
+        <div class="content" id="confirmtext"></div>
+        <div class="actions">
+            <div class="ui red button" onclick="ruledel()">删除规则</div>
+        </div>
+    </div>
+
+    <div class="ui modal" id="addrules">
+        <i class="close icon"></i>
+        <div class="header">iptables规则添加</div>
+        <div class="content">
+        <div class="ui form">
+            <h4 class="ui dividing header"><a href="javascript:tips()">CentOS 6.x iptables规则展示</a></h4>
+            <div class="field">
+            <label>以[;分号]作为换行</label>
+            <textarea id="code"></textarea>
+            </div>
+            <div class="field">
+            <div class="ui checkbox">
+                <input id="auto" type="checkbox" name="save">
+                <label>勾选后自动执行保存并生效</label>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="actions">
+        <div class="ui green button" onclick="exec()">执行</div>
+        </div>
+    </div>
+
+    <div class="ui modal" id="list">
+        <i class="close icon"></i>
+        <div class="header">iptables规则列表</div>
+        <div class="content" id="rulelist">
+        <table class="ui unstackable table selectable">
+        <thead>
+            <tr>
+                <th colspan="8">Chain INPUT (policy ACCEPT)</th>
+            </tr>
+            <tr >
+                <th>num</th>
+                <th>target</th>
+                <th>prot</th>
+                <th>opt</th>
+                <th>source</th>
+                <th colspan="3">destination</th>
+            </tr>
+        </thead>
+        <tbody id="INPUT">
+
+        </tbody>
+        </table>
+
+        <table class="ui unstackable table selectable">
+        <thead>
+            <tr>
+                <th colspan="8">Chain OUTPUT (policy ACCEPT)</th>
+            </tr>
+            <tr >
+                <th>num</th>
+                <th>target</th>
+                <th>prot</th>
+                <th>opt</th>
+                <th>source</th>
+                <th colspan="3">destination</th>
+            </tr>
+        </thead>
+        <tbody id="OUTPUT">
+
+        </tbody>
+        </table>
+
+        <table class="ui unstackable table selectable">
+        <thead>
+            <tr>
+                <th colspan="8">Chain FORWARD (policy ACCEPT)</th>
+            </tr>
+            <tr >
+                <th>num</th>
+                <th>target</th>
+                <th>prot</th>
+                <th>opt</th>
+                <th>source</th>
+                <th colspan="3">destination</th>
+            </tr>
+        </thead>
+        <tbody id="FORWARD">
+
+        </tbody>
+        </table>
+        
+        </div>
+    </div>
+
+    <div class="ui basic modal" id="tips">
+        <i class="close icon"></i>
+        <div class="header">
+            CentOS 6.x iptables规则展示
+        </div>
+        <div class="image content">
+            <div class="image">
+            <i class="archive icon"></i>
+            </div>
+            <div class="description">
+            <p><b>1.如果SSH端口是22（这里不建议用默认端口最好改掉SSH端口）</b></p>   
+            <p>iptables -A INPUT -p tcp --dport 22 -j ACCEPT </p>  
+            <p>iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT </p>  
+            
+            <p><b>2.下面是很危险的操作，如果你第一步没做就会直接可能导致你连不上SSH，此步骤前切记执行第一步！！！</b></p>    
+            <p>iptables -P INPUT DROP</p>    
+            <p>iptables -P OUTPUT DROP</p>    
+            <p>iptables -P FORWARD DROP</p>   
+            <p>这个步骤是把所有不符合自己配置的规则ACCEPT的连接全部DROP掉</p>   
+            
+            <p><b>3.服务器要开放哪些端口或者是要访问哪些端口来做具体的配置</b></p>    
+            
+            <p>#ping使用的端口   </p>
+            <p>iptables -A INPUT -p icmp -j ACCEPT </p>  
+            <p>iptables -A INPUT -i lo -j ACCEPT </p>  
+            <p>iptables -A INPUT -s 127.0.0.1/32 -d 127.0.0.1/32 -j ACCEPT </p>  
+            <p>iptables -A INPUT -s 192.168.2.200/32 -d 192.168.2.200/32 -j ACCEPT </p>  
+            <p>#允许服务器自己的SSH（对外部请求来说服务器是目标所以使用--dport）</p>   
+            <p>iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT </p>  
+            <p>#80端口不用说了吧，服务器网站访问端口   </p>
+            <p>iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT </p>  
+            <p>iptables -A INPUT -p tcp -m tcp --dport 3306 -j ACCEPT </p>  
+            <p>iptables -A INPUT -p tcp -m tcp --dport 11211 -j ACCEPT </p>  
+            <p>iptables -A INPUT -p tcp -m tcp --dport 11212 -j ACCEPT </p>  
+            <p>iptables -A FORWARD -j REJECT --reject-with icmp-host-prohibited   </p>
+            <p>#53端口是DNS相关，TCP和UDP都要配置  </p> 
+            <p>iptables -A INPUT -p tcp -m tcp --dport 53 -j ACCEPT </p>  
+            <p>iptables -A INPUT -p udp -m udp --dport 53 -j ACCEPT </p>  
+            <p>#ping使用的端口   </p>
+            <p>iptables -A OUTPUT -p icmp -j ACCEPT </p>  
+            <p>iptables -A OUTPUT -s 127.0.0.1/32 -d 127.0.0.1/32 -j ACCEPT </p>  
+            <p>iptables -A OUTPUT -s 192.168.2.200/32 -d 192.168.2.200/32 -j ACCEPT </p>  
+            <p>#允许服务器SSH到其他机器（使用外部端口就使用--dport）</p>   
+            <p>iptables -A OUTPUT -p tcp -m tcp --dport 22 -j ACCEPT </p>  
+            <p>#允许服务器自己的SSH（自已为源输出就使用--sport）   </p>
+            <p>iptables -A OUTPUT -p tcp -m tcp --sport 22 -j ACCEPT </p>  
+            <p>#访问外部网站80端口（使用外部端口就使用--dport）</p>   
+            <p>iptables -A OUTPUT -p tcp -m tcp --dport 80 -j ACCEPT </p>  
+            <p>#如果服务器需要访问外部网站，那么OUTPUT也需要配置53端口（使用外部端口就使用--dport）</p>   
+            <p>iptables -A OUTPUT -p tcp -m tcp --dport 53 -j ACCEPT </p>  
+            <p>iptables -A OUTPUT -p udp -m udp --dport 53 -j ACCEPT </p>  
+            <p>#如果有访问外部邮箱，那么打开邮箱相关端口（使用外部端口就使用--dport）</p>   
+            <p>iptables -A OUTPUT -p tcp -m tcp --dport 465 -j ACCEPT </p>  
+            <p>iptables -A OUTPUT -p tcp -m tcp --dport 25 -j ACCEPT </p>  
+            <p>iptables -A OUTPUT -p tcp -m tcp --dport 110 -j ACCEPT </p>  
+            <p>#服务器网站访问端口（自已为源输出就使用--sport）   </p>
+            <p>iptables -A OUTPUT -p tcp -m tcp --sport 80 -j ACCEPT </p>  
+            <p>iptables -A OUTPUT -p tcp -m tcp --sport 3306 -j ACCEPT </p>  
+            <p>iptables -A OUTPUT -p tcp -m tcp --sport 11211 -j ACCEPT </p>  
+            <p>iptables -A OUTPUT -p tcp -m tcp --sport 11212 -j ACCEPT </p> 
+            </div>
+        </div>
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+            <div class="ui ok green basic inverted button">
+                <i class="checkmark icon"></i>
+                知道啦！
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+{{template "/public/nav-slide-js.html"}}
+<script src="/static/Semantic-UI/semantic.min.js"></script>
+<script src="/static/js/firewall.js"></script>
+<script>
+ 
+</script>
+</html>

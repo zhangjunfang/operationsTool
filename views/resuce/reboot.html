@@ -1,0 +1,54 @@
+<html>
+<head>
+{{template "/public/head.html"}}
+</head>
+<body>
+{{template "/public/nav-slide.html"}}
+
+<div class="modal-page pushable dimmable scrolling">
+    <div class="ui container" style="margin: 80px 0;">
+        <div class="ui breadcrumb">
+            <a class="section" href="/">首页</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section">应急处理</div>
+            <i class="right arrow icon divider"></i>
+            <div class="active section">重启服务器</div>
+        </div>
+
+        <h3 class="ui block header">重启服务器</h3>
+
+        <div class="ui warning message">
+            <div class="header">重启服务器</div>
+            <ul class="list">
+                <li>在服务器重启前确保数据已经保存好。</li>
+                <li>服务器重启后非默认自启程序会停止运行。</li>
+            </ul>
+        </div>
+
+        <div class="ui cards">
+            <div class="card">
+                <div class="content">
+                <div class="header">重启服务器</div>
+                <div class="description">确保服务器数据保存好,云维兔对你的Session数据也会清空。</div>
+                </div>
+                <div class="ui bottom red attached button" onclick="reboot()"><i class="undo icon"></i>重启</div>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="ui modal small" id="info">
+        <i class="close icon"></i>
+        <div class="header">系统消息</div>
+        <div class="content" id="infotext"></div>
+        <div class="actions">
+            <div class="ui green button" onclick="getinfo()">收到</div>
+        </div>
+    </div>
+
+</div>
+</body>
+{{template "/public/nav-slide-js.html"}}
+<script src="/static/Semantic-UI/semantic.min.js"></script>
+<script src="/static/js/reboot.js"></script>
+</html>

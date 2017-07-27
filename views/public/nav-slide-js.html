@@ -1,0 +1,26 @@
+<script src="/static/js/jquery-3.2.1.min.js"></script>
+<script src="/static/Semantic-UI/components/sidebar.js"></script>
+<script>
+    // 侧拉框
+    function sidebar(){
+        $('.ui.sidebar').sidebar('toggle');
+    }
+    // 断开连接
+    function disconnect(){
+        var DC = $.ajax({
+            url:"/",
+            async:true,
+            dataType:"JSON",
+            type:"DELETE",
+            success:function(){
+                var DC_obj = $.parseJSON(DC.responseText);
+                if (DC_obj == "success"){
+                    location.href = "/";
+                }
+            },
+            error:function(){
+                alert("Disconnect error!");
+            }
+        });
+    }
+</script>

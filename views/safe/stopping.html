@@ -1,0 +1,57 @@
+<html>
+<head>
+{{template "/public/head.html"}}
+</head>
+<body>
+{{template "/public/nav-slide.html"}}
+
+<div class="modal-page pushable dimmable scrolling">
+    <div class="ui container" style="margin: 80px 0;">
+        <div class="ui breadcrumb">
+            <a class="section" href="/">首页</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section">安全中心</div>
+            <i class="right arrow icon divider"></i>
+            <div class="active section">防DDos手段</div>
+        </div>
+
+        <h3 class="ui block header">防DDos手段</h3>
+
+        <div class="ui warning message">
+            <div class="header">禁止Ping请求</div>
+            <ul class="list">
+                <li>禁止Ping对服务器的请求可以阻止"Ping Flood","Ping of Death"等DDos攻击。</li>
+                <li>禁止Ping请求后，将会无法测试该服务器是否可达。</li>
+            </ul>
+        </div>
+
+        <div class="ui cards">
+            <div class="card">
+                <div class="content">
+                <div class="header">禁止Ping请求</div>
+                <div class="description">禁止后，服务器将不会被主机ping到，但服务器仍可以发出ping请求。</div>
+                </div>
+                <div class="ui two buttons">
+                    <div class="ui bottom green button" onclick="allow()"><i class="undo icon"></i>允许</div>
+                    <div class="ui bottom red button" onclick="stop()"><i class="undo icon"></i>禁止</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui modal small" id="info">
+            <i class="close icon"></i>
+            <div class="header">系统消息</div>
+            <div class="content" id="infotext"></div>
+            <div class="actions">
+                <div class="ui green button" onclick="getinfo()">收到</div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+</body>
+{{template "/public/nav-slide-js.html"}}
+<script src="/static/Semantic-UI/semantic.min.js"></script>
+<script src="/static/js/stopping.js"></script>
+</html>

@@ -1,0 +1,66 @@
+<html>
+<head>
+{{template "/public/head.html"}}
+</head>
+<body>
+{{template "/public/nav-slide.html"}}
+
+<div class="modal-page pushable dimmable scrolling">
+    <div class="ui container" style="margin-top: 80px;">
+
+        <div class="ui breadcrumb">
+            <a class="section" href="/">首页</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section">硬件设备</div>
+            <i class="right arrow icon divider"></i>
+            <div class="active section">硬盘</div>
+        </div>
+
+        <h3 class="ui block header">硬盘挂载/卸载</h3>
+
+        <div class="ui info message">
+            <div class="header">硬盘挂载/卸载操作</div>
+            <ul class="list">
+                <li>通过对硬盘/分区的挂载和卸载可以有效地管理服务器空间的分布。</li>
+            </ul>
+        </div>
+
+        <table class="ui unstackable table blue selectable">
+        <thead align="center">
+            <tr>
+            <th>名称</th>  
+            <th>类型</th>        
+            <th>状态</th>  
+            </tr>
+        </thead>
+        <tbody id="umount" align="center">
+
+        </tbody>
+        </table>
+
+        <table class="ui unstackable table orange selectable">
+        <thead align="center">
+            <tr>
+            <th>名称</th>        
+            <th>挂载点</th>  
+            <th>状态</th>  
+            </tr>
+        </thead>
+        <tbody id="mount" align="center">
+
+        </tbody>
+        </table>
+
+    </div>
+    
+<div class="ui small modal"></div>
+
+</div>
+</body>
+{{template "/public/nav-slide-js.html"}}
+<script>
+    var text = "{{.Romstatus}}";
+</script>
+<script src="/static/Semantic-UI/semantic.min.js"></script>
+<script src="/static/js/rom.js"></script>
+</html>

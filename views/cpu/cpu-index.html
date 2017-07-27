@@ -1,0 +1,42 @@
+<html>
+<head>
+{{template "/public/head.html"}}
+</head>
+<body>
+{{template "/public/nav-slide.html"}}
+
+<div class="modal-page pushable dimmable scrolling">
+    <div class="ui container" style="margin-top: 80px;">
+
+        <div class="ui breadcrumb">
+            <a class="section" href="/">首页</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section">硬件设备</div>
+            <i class="right arrow icon divider"></i>
+            <div class="active section">处理器</div>
+        </div>
+
+        <h3 class="ui block header">处理器核心控制</h3>
+
+        <div class="ui error message">
+            <div class="header">处理器核心控制是一项危险操作</div>
+            <ul class="list">
+                <li>通过对处理器核心数目的控制可以达到一定的节能效果，适用于对多核心服务器降低能耗。</li>
+                <li>降低耗能的同时，会对服务器的性能大幅下降，不建议对数据处理频繁的服务器使用该功能。</li>
+                <li>当前功能在阿里云，新浪云被禁止使用，该功能暂时不公开使用。</li>
+            </ul>
+        </div>
+
+        <div id="cpucores" class="ui cards">
+            <div class="card"><div class="content"><div class="header">CpuCore0</div><div class="meta">目前状态:开启</div></div><div class="extra content"><div class="ui two buttons"><div class="ui basic green button disabled">开启</div><div class="ui basic red button disabled">关闭</div></div></div></div>
+        </div>
+
+    </div>
+</div>
+</body>
+{{template "/public/nav-slide-js.html"}}
+<script>
+    var CpuCore = parseInt("{{.CpuCore}}");
+</script>
+<script src="/static/js/cpu.js"></script>
+</html>

@@ -1,0 +1,15 @@
+package main
+//
+import (
+	"servercloud/soft"
+)
+
+func main() {
+	// device.CpuInfo()
+	// device.RamInfo()
+	// device.DiskInfo()
+	// device.EthInfo()
+	// soft.Version()
+	// soft.Swaps()
+	soft.Process()
+}

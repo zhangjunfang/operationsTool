@@ -1,0 +1,78 @@
+<html>
+{{template "public/head.html"}}
+<body>
+
+{{template "/public/nav-slide.html"}}
+    
+    <div class="modal-page pushable dimmable scrolling">
+        <div class="ui container" style="margin-top: 80px;">
+            <div class="ui items">
+                    <div class="item">
+                    <div class="image">
+                    <h1>SYSTEM</h1>
+                    </div>
+                    <div class="content">
+                    <a id="system_info" class="header">...</a>
+                    </div>
+                </div>
+                <h4 class="ui horizontal divider header"><i class="bar chart icon"></i></h4> 
+                <div class="item">
+                    <div class="image">
+                    <h1>CPU</h1>
+                    </div>
+                    <div class="content">
+                    <a id="cpu_name" class="header">...</a>
+                    <div class="meta">
+                        <span id="cpu_cores">...</span>
+                    </div>
+                    <div class="description">
+                        <p id="cpu_processor"></p>
+                        <p id="cpu_MHz"></p>
+                    </div>
+                    <div class="extra" id="cpu_pre">...</div>
+                    </div>
+                </div>
+                <h4 class="ui horizontal divider header"><i class="bar chart icon"></i></h4>
+                <div class="item">
+                    <div class="image">
+                    <h1>RAM</h1>
+                    </div>
+                    <div class="content">
+                    <a class="header" id="ram_total">...</a>
+                    <div class="description">
+                        <p id="ram_free">...</p>
+                    </div>
+                    <div class="extra" id="ram_pre">...</div>
+                    </div>
+                </div>
+                <h4 class="ui horizontal divider header"><i class="bar chart icon"></i></h4>    
+                <div class="item">
+                    <div class="image">
+                    <h1>ROM</h1>
+                    </div>
+                    <div class="content">
+                    <table class="ui unstackable table">
+                        <thead>
+                            <tr>
+                                <th>挂载点</th>
+                                <th>总空间</th>
+                                <th>已用空间</th>
+                                <th>可用空间</th>
+                                <th>占用比</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rom_content">
+                            
+                        </tbody>
+                    <table>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+{{template "/public/nav-slide-js.html"}}
+<script src="/static/js/ssh-detail.js"></script>
+</html>

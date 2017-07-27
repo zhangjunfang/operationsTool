@@ -1,0 +1,96 @@
+<html style="height:100%">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/static/img/ico.png" type="image/x-icon" />
+    <title>云维兔</title>
+    <link rel="stylesheet" href="/static/Semantic-UI/components/button.min.css">
+    <link rel="stylesheet" href="/static/Semantic-UI/components/input.min.css">
+    <link rel="stylesheet" href="/static/Semantic-UI/components/label.min.css">
+    <link rel="stylesheet" href="/static/Semantic-UI/components/icon.min.css">
+    <link rel="stylesheet" href="/static/Semantic-UI/components/header.min.css">
+</head>
+<body>
+    <div class="pusher">
+        <div class="full height" style="margin: 100px 0px;">
+            <div style="text-align:center">
+                <h2 class="ui icon header">
+                    <img src="/static/img/wetwo200x140.png" alt="logo" style="width: 200px">
+                    <div class="content">云维兔
+                         <div id="text" class="sub header">双兔傍地走，安能辨我是雄雌。</div>
+                         <!--<div class="sub header">目前只兼容Linux版本:CentOS 6.x</div>-->
+                    </div>
+                </h2>
+                <form action="/" method="post">
+                    <div class="ui right labeled left icon input" style="padding: 10px 0">
+                        <i class="terminal icon"></i>
+                        <input type="text" name="userip" id="userip" placeholder="root@127.0.0.1" onkeyup="validate()">
+                        <a class="ui tag label" id="useripLabel">User@IP</a>
+                    </div>    
+                    <div class="ui right labeled left icon input" style="padding: 10px 0">
+                        <i class="privacy icon"></i>
+                        <input type="password" name="password" id="password" placeholder="Password" onkeyup="launch()">
+                        <a class="ui tag label">密码</a>
+                    </div>
+                    <br><br>
+                    <input class="ui basic button" id="submit" type="submit" value="连接" disabled="true" onclick="go()">
+                    <p id="LoginInfo"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+</body>
+<script>
+
+    window.onload = function(){
+        var LoginInfo = "{{.LoginInfo}}";
+        if(LoginInfo == "error"){
+            var LoginInfo = document.getElementById('LoginInfo')
+            LoginInfo.innerHTML = '<i class="warning sign icon"></i>连接失败';
+        }
+    }
+
+    function validate(){
+        var userip = document.getElementById('userip').value;
+        var Reg = /(\w+)\@(\d+)\.(\d+)\.(\d+)\.(\d+)$/g;
+        var res = Reg.test(userip);
+        console.log("RegExpResult:"+res);
+        var password = document.getElementById('password').value;
+        var submit = document.getElementById('submit');
+        var text = document.getElementById('text');
+        if(res){
+            document.getElementById('useripLabel').innerHTML = "格式正确";
+            text.innerHTML = '目前只兼容Linux版本:CentOS 6.x';
+            if(password){
+                if(submit.getAttribute('disabled')){
+                    submit.removeAttribute('disabled');
+                }
+            }
+            return true;
+        }else{
+            document.getElementById('useripLabel').innerHTML = "格式不正确";
+            submit.setAttribute('disabled',true);
+            return false;
+        }
+    }
+
+    function launch(){
+        var password = document.getElementById('password').value;
+        var submit = document.getElementById('submit');
+        if(validate()&&(password!="")){
+            if(submit.getAttribute('disabled')){
+                submit.removeAttribute('disabled');
+            }
+        }else{
+            submit.setAttribute('disabled',true);
+        }
+    }
+
+    function go(){
+        var LoginInfo = document.getElementById('LoginInfo')
+        LoginInfo.innerHTML = '<i class="notched circle loading icon"></i>';
+    }
+</script>
+</html>

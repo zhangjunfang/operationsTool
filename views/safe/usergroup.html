@@ -1,0 +1,143 @@
+<html>
+<head>
+{{template "/public/head.html"}}
+</head>
+<body>
+{{template "/public/nav-slide.html"}}
+
+<div class="modal-page pushable dimmable scrolling">
+    <div class="ui container" style="margin-top: 80px;">
+
+        <div class="ui breadcrumb">
+            <a class="section" href="/">首页</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section">安全中心</div>
+            <i class="right arrow icon divider"></i>
+            <div class="active section">用户/组管理</div>
+        </div>
+
+        <h3 class="ui block header">用户/组管理</h3>
+
+        <div class="ui success message">
+            <div class="header">用户/组管理可以分配服务器的管理员帐号和所属组</div>
+            <ul class="list">
+                <li>Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。</li>
+                <li>用户的账号一方面可以帮助系统管理员对使用系统的用户进行跟踪，并控制他们对系统资源的访问</li>
+                <li>另一方面也可以帮助用户组织文件，并为用户提供安全性保护。</li>
+            </ul>
+        </div>
+
+        <div class="ui cards">
+            <div class="card"><div class="content"><div class="header">用户管理</div></div><div class="extra content"><div class="ui three buttons"><div class="ui basic green button" onclick="useradd()">增加用户</div><div class="ui basic blue button" onclick="usermod()">转移所属组</div><div class="ui basic red button" onclick="userlist()">用户列表</div></div></div></div>
+            <div class="card"><div class="content"><div class="header">切换组</div></div><div class="extra content"><div class="ui two buttons"><div class="ui basic green button" onclick="groupadd()">增加组</div><div class="ui basic red button" onclick="grouplist()">组列表</div></div></div></div>
+        </div>
+
+        <div class="ui modal small" id="info">
+            <i class="close icon"></i>
+            <div class="header">系统消息</div>
+            <div class="content" id="infotext"></div>
+            <div class="actions">
+                <div class="ui green button" onclick="getinfo()">收到</div>
+            </div>
+        </div>
+
+        <div class="ui modal small" id="userlist">
+            <i class="close icon"></i>
+            <div class="header">用户列表</div>
+            <div class="content" id="usertext"></div>
+        </div>
+
+        <div class="ui modal small" id="userdel">
+            <i class="close icon"></i>
+            <div class="header">用户删除</div>
+            <div class="content" id="userdeltext"></div>
+            <div class="actions">
+                <div class="ui red button" onclick="userdel_do()">删除</div>
+            </div>
+        </div>
+
+        <div class="ui modal small" id="usermod">
+            <i class="close icon"></i>
+            <div class="header">转移用户所属组</div>
+            <div class="content" id="usermodtext">
+                <div class="ui form">
+                    <div class="two fields">
+                        <div class="field">
+                        <label>用户:</label>
+                        <input type="text" id="authmod" placeholder="不含标点符号">
+                        </div>
+                        <div class="field">
+                        <label>转移组:</label>
+                        <input type="text" id="groupmod" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui green button" onclick="usermod_do()">转移</div>
+            </div>
+        </div>
+
+        <div class="ui modal small" id="useradd">
+            <i class="close icon"></i>
+            <div class="header">增加用户</div>
+            <div class="content" id="useraddtext">
+                <div class="ui form">
+                    <div class="two fields">
+                        <div class="field">
+                        <label>用户名:</label>
+                        <input type="text" id="auth" placeholder="不含标点符号">
+                        </div>
+                        <div class="field">
+                        <label>密码:</label>
+                        <input type="text" id="passwd" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui green button" onclick="useradd_do()">增加</div>
+            </div>
+        </div>
+
+        <div class="ui modal small" id="grouplist">
+            <i class="close icon"></i>
+            <div class="header">组列表</div>
+            <div class="content" id="grouptext"></div>
+        </div>
+
+        <div class="ui modal small" id="groupdel">
+            <i class="close icon"></i>
+            <div class="header">组删除</div>
+            <div class="content" id="groupdeltext"></div>
+            <div class="actions">
+                <div class="ui red button" onclick="groupdel_do()">删除</div>
+            </div>
+        </div>
+
+        <div class="ui modal small" id="groupadd">
+            <i class="close icon"></i>
+            <div class="header">增加组</div>
+            <div class="content" id="groupaddtext">
+                  <div class="ui form">
+                    <div class="two fields">
+                        <div class="field">
+                        <label>组名:</label>
+                        <input type="text" id="group" placeholder="不含标点符号">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui green button" onclick="groupadd_do()">增加</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+{{template "/public/nav-slide-js.html"}}
+<script src="/static/Semantic-UI/semantic.min.js"></script>
+<script src="/static/js/usergroup.js"></script>
+
+</html>
